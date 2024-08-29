@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import React from "react";
 import { FaGithub } from "react-icons/fa";
@@ -5,6 +7,7 @@ import { FaLinkedin } from "react-icons/fa";
 import { ModeToggle } from "./ToggleButton";
 import { Button } from "./ui/button";
 import { IoIosMenu } from "react-icons/io";
+import { useTheme } from "next-themes";
 
 import {
   Sheet,
@@ -15,6 +18,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 const Navbar = () => {
+  const { theme } = useTheme();
+
   return (
     <nav className="items-center flex justify-between px-4 py-4 shadow-lg lg:px-40">
       <Link href="/">
@@ -30,8 +35,17 @@ const Navbar = () => {
       <div className="hidden md:flex justify-between ">
         <ModeToggle />
         <Link href="https://github.com/suhanaaa">
-          <button className="ml-2 flex gap-1 text-sm items-center px-2 py-[0.63rem] border-black font-medium text-black border-2">
-            <FaGithub size={20} />
+          <button
+            className={`ml-2 flex gap-1 text-sm items-center px-2 py-[0.50rem] font-medium border-2 ${
+              theme === "dark"
+                ? "border-white text-white"
+                : "border-black text-black py-[0.64rem]"
+            }`}
+          >
+            <FaGithub
+              size={20}
+              className={theme === "dark" ? "text-white" : "text-black"}
+            />
             Github
           </button>
         </Link>
